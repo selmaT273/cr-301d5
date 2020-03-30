@@ -124,22 +124,22 @@ let objectLit = () => ({
 console.log(objectLit());
 
 
-let sumAndProduct = function(a, b) {
+let sumAndProduct = (a, b) => {
   let sum = a + b;
   let product = a * b;
-  return [sum, product];
+  return `${sum} ${product}`;
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(sumAndProduct(3, 9));
+console.log(sumAndProduct(3, 9));
 
 
-let message = function(name) {
+let message = (name) => {
   return `Hello, ${name}!`;
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(message('Allie'));
+console.log(message('Allie'));
 
 
 let Student = function(name, age, hometown) {
@@ -152,7 +152,7 @@ let joe = new Student('Joe', 'Schmoe', 100);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this code to break!
-// console.log(joe);
+console.log(joe);
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
@@ -164,7 +164,7 @@ Student.prototype.greeting = function() {
 
 // TODO: Uncomment the following line of code to see the output in the browser console
 // Note that the arrow function will cause this method to break!
-// console.log(joe.greeting());
+console.log(joe.greeting());
 
 // TODO: After viewing the previous console.log(), return the code to a working state.
 
@@ -175,7 +175,7 @@ Student.courseName = function() {
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(Student.courseName());
+console.log(Student.courseName());
 
 
 
@@ -186,17 +186,17 @@ Student.prototype.scope = function() {
 };
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(joe.scope());
+console.log(joe.scope());
 
 Student.prototype.scopeArrow = () => console.log(this);
 
 // TODO: Uncomment the following line of code to see the output in the browser console
-// console.log(joe.scopeArrow());
+console.log(joe.scopeArrow());
 
 // TODO: Write a COMMENT below to answer the following questions.
 // 1. What is "this" when joe.scope() is invoked?
-//
+//   "this" will be the joe instance of the student constructer function
 // 2. What is "this" when joe.scopeArrow() is invoked?
-//
+//   "this" refers to the global window object
 // 3. Explain why "this" is different when an arrow function is used.
-//
+//  "this" is different when an arrow function is used because it bubbles up to the next-nearest scope
