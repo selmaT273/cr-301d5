@@ -1,0 +1,36 @@
+header {
+  /* height: 125px;
+  line-height: 125px; */
+}
+
+h1 {
+  margin: 0;
+}
+
+footer {
+  height: 75px;
+  line-height: 75px;
+}
+
+section div {
+  height: 300px;
+  margin: 2em auto;
+  width: 300px;
+  border: 1px solid green;
+}
+
+@media (min-width: 960px) {
+  body { background: pink; }
+
+  section div {
+     float: left;
+    width: 30%; }
+
+  footer { clear: both; }
+}
+
+@media (min-width: 1200px) {
+  body { background: turquoise; }
+
+  main { max-width: 1000px; margin: 0 auto; }
+}
