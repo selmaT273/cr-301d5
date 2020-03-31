@@ -1,6 +1,6 @@
 [
   {
-    "name": "Odie",
+    "name": "<script>alert('hi')</script>",
     "image_url": "https://vignette.wikia.nocookie.net/garfield/images/a/ac/OdieCharacter.jpg/revision/latest?cb=20161218045212",
     "hobbies": "Annoying Garfield"
   },
