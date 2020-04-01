@@ -6,7 +6,7 @@ let neighborhoodDataSet = [
     city: 'Seattle',
     population: '23,566',
     founded: '1820',
-    body: '<p>This is example text to show you how <strong>HTML</strong> can be escaped using <em>Mustache</em>.</p>'
+    body: '<p>This is <strong>example</strong> text to show you how <strong>HTML</strong> can be escaped using <em>Mustache</em>.</p>'
   },
   {
     name: 'Ballard',

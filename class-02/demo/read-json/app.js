@@ -35,11 +35,13 @@ $.ajax('data.json', ajaxSettings)
   .then(function (data) {
     console.log(data);
 
+    const dogs = data; // data is an array of dog-ish objects
 
-    data.forEach(dog => {
+    dogs.forEach(dog => {
       console.log(dog.name);
 
       let actualDog = new Dog(dog);
+      console.log(actualDog);
       actualDog.render('main section');
     })
 
