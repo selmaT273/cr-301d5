@@ -1,3 +1,37 @@
 @media (min-width: 960px) {
 
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+    }
+
+    main > nav {
+        width: 250px;
+    }
+
+    main > .content {
+        flex: auto;   /* says take up the rest of the space not taken up by the side navs */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    main > aside {
+        order: 3;
+        width: 250px;
+    }
+    
+    .deck {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card {
+        display: flex;
+    }
 }
