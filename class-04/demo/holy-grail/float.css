@@ -1,6 +1,7 @@
 @media (min-width: 960px) {
 
     main {
+
         overflow:hidden;
         height:calc(100% - 140px);
     }
