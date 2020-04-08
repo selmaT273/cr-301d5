@@ -1,0 +1,6 @@
+[submodule "class-06/demo/dv-301d5-city"]
+	path = class-06/demo/dv-301d5-city
+	url = https://github.com/dahlbyk-demo/dv-301d5-city
+[submodule "class-07/demo/city-explorer"]
+	path = class-07/demo/city-explorer
+	url = https://github.com/dahlbyk-demo/dv-301d5-city

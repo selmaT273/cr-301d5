@@ -30,3 +30,4 @@ Request a personal API key from the following APIs. You should receive these in 
 - [Dark Sky API Docs](https://darksky.net/dev/docs){:target="_blank"}
 - [Yelp API Docs](https://www.yelp.com/developers/documentation/v3/business_search){:target="_blank"}
 - [The Movie DB API Docs](https://developers.themoviedb.org/3/getting-started/introduction){:target="_blank"}
+- [Hiking Project API Docs](https://www.hikingproject.com/data){:target="_blank"}
