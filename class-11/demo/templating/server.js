@@ -8,6 +8,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.static('./public'))
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (request, response) =>{
@@ -44,6 +45,17 @@ app.get('/cart', (request, response) => {
     }
   };
   response.render('cart', viewModel)
+})
+
+app.get('/checkout', (request, response) => {
+  console.log('/checkout', request.query);
+  response.render('checkout');
+})
+
+let orderNumber = 5;
+app.post('/order', (request, response) => {
+  console.log('/order', request.body);
+  response.render('receipt', { orderNumber: orderNumber++ });
 })
 
 const cors = require('cors');
