@@ -34,6 +34,8 @@ app.set('view engine', 'ejs');
 // API Routes
 app.get('/', getTasks);
 app.get('/tasks/:task_id', getOneTask);
+app.get('/add', showAddTaskForm);
+app.post('/add', addTask);
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
@@ -92,6 +94,28 @@ function getOneTask(request, response) {
           task: rows[0]
         });
       }
+    })
+    .catch(err => handleError(err, response))
+}
+
+function showAddTaskForm(request, response) {
+  response.render('pages/add-view');
+}
+
+function addTask(request, response) {
+  console.log('POST /add', request.body);
+  const { title, description, category, contact, status } = request.body;
+
+  const SQL = `
+    INSERT INTO tasks (title, description, category, contact, status)
+    VALUES ($1, $2, $3, $4, $5)
+  `;
+  const values = [title, description, category, contact, status];
+
+  // POST - REDIRECT - GET
+  client.query(SQL, values)
+    .then(() => {
+      response.redirect('/');
     })
     .catch(err => handleError(err, response))
 }
