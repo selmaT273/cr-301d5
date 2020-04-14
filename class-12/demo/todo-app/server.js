@@ -7,6 +7,10 @@ require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
 
+// Database Setup
+const client = new pg.Client(process.env.DATABASE_URL);
+client.on('error', err => { throw err; });
+
 // Application Setup
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,10 +20,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 // Specify a directory for static resources
 app.use(express.static('./public'));
-
-// Database Setup
-const client = new pg.Client(process.env.DATABASE_URL);
-client.on('error', err => { throw err; });
 
 // Set the view engine for server-side templating
 app.set('view engine', 'ejs');
