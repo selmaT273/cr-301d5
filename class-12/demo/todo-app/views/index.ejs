@@ -8,6 +8,12 @@
     </header>
     <section class="task-view container">
       <ul>
+        <% tasks.forEach(task => { %>
+          <li class="task-item">
+            <h4>Task: <%= task.title %></h4>
+            <p>Completion status: <%= task.status %></p>
+          </li>
+        <% }) %>
       </ul>
     </section>
     </main>
