@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cart for <%= user.username %></title>
+  </head>
+  <body>
+    <h1>Cart</h1>
+    <h2>
+      Shopper: 
+      <a href="/profiles/<%= user.username %>"><%= user.name %></a>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.forEach(item => { %>
+          <tr>
+            <td><%= item.product %></td>
+            <td><%= item.price %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.price * item.quantity %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total</td>
+          <td><%= cart.reduce((sum, item) => sum + item.price * item.quantity, 0) %></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <a href="/checkout">Proceed to Checkout</a>
+  </body>
+</html>

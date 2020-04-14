@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="./styles/module-checkout.css" />
+  </head>
+  <body>
+    <h1>Checkout</h1>
+    <form action="/order" method="POST">
+      <fieldset>
+        <legend>Shipping Address</legend>
+        <label>
+          <span>Address:</span>
+          <input type="text" name="address" />
+        </label>
+        <label>
+          <span>City:</span>
+          <input type="text" name="city" />
+        </label>
+        <label>
+          <span>State:</span>
+          <select name="state">
+            <option></option>
+            <option>IA</option>
+            <option>IL</option>
+            <option>WI</option>
+          </select>
+        </label>
+        <label>
+          <span>ZIP Code:</span>
+          <input type="text" name="zip" pattern="\d{5}(-\d{4})?" />
+        </label>
+        <label>
+          <span>Phone:</span>
+          <input type="tel" name="phone" />
+        </label>
+        <label></label>
+      </fieldset>
+      <button>
+        Place Order <strong>Now</strong>
+      </button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+label {
+  display: flex;
+  padding: 10px;
+}
+
+label select,
+label input {
+  flex: 1;
+  margin-left: 20px;
+}

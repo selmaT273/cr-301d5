@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grocery List for <%= user.username %></title>
+  </head>
+  <body>
+    <h1>Grocery List</h1>
+    <h2>
+      Shopper: 
+      <a href="/profiles/<%= user.username %>"><%= user.name %></a>
+    </h2>
+    <ul>
+      <% groceryList.forEach(item => { %>
+        <li><%= item %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
