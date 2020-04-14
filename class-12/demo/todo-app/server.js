@@ -33,6 +33,7 @@ app.set('view engine', 'ejs');
 
 // API Routes
 app.get('/', getTasks);
+app.get('/tasks/:task_id', getOneTask);
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
 
@@ -47,9 +48,14 @@ client.connect()
 
 // Route Handlers
 function getTasks(request, response) {
-  const SQL = 'SELECT * FROM Tasks;';
+  const { sort_by } = request.query;
+  const SQL = `
+    SELECT *
+    FROM Tasks
+    ORDER BY $1 ASC;
+  `;
 
-  client.query(SQL)
+  client.query(SQL, [sort_by || 'due'])
     .then(results => {
       const { rowCount, rows } = results;
       console.log('/ db result', rows);
@@ -62,6 +68,32 @@ function getTasks(request, response) {
     .catch(err => {
       handleError(err, response);
     });
+}
+
+function getOneTask(request, response) {
+  // request.params.task_id
+  const { task_id } = request.params;
+
+  const SQL = `
+    SELECT *
+    FROM Tasks
+    WHERE id = $1
+    LIMIT 1;
+  `;
+
+  client.query(SQL, [task_id])
+    .then(results => {
+      const { rows } = results;
+
+      if (rows.length < 1) {
+        handleError('Task Not Found', response)
+      } else {
+        response.render('pages/detail-view', {
+          task: rows[0]
+        });
+      }
+    })
+    .catch(err => handleError(err, response))
 }
 
 function handleError(err, response) {
