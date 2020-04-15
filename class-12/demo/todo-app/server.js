@@ -109,13 +109,15 @@ function addTask(request, response) {
   const SQL = `
     INSERT INTO tasks (title, description, category, contact, status)
     VALUES ($1, $2, $3, $4, $5)
+    RETURNING Id
   `;
   const values = [title, description, category, contact, status];
 
   // POST - REDIRECT - GET
   client.query(SQL, values)
-    .then(() => {
-      response.redirect('/');
+    .then(results => {
+      let id = results.rows[0].id;
+      response.redirect(`/tasks/${id}`);
     })
     .catch(err => handleError(err, response))
 }
