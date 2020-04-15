@@ -23,8 +23,36 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  // Solution code here...
+  return hoursOpen
+    .map((hour, hourIndex) =>
+      cookieStores.reduce(
+        (sum, cookieStore) =>
+          sum + cookieStore[hourIndex],
+        0 // initial sum
+      )
+    );
 
+  /*
+  let resultArray = [];
+
+  for (var hourIndex = 0; hourIndex < hoursOpen.length; hourIndex++) {
+    console.log(hourIndex, hoursOpen[hourIndex]);
+
+    let cookiesForThisHour = 0;
+
+    for (var storeIndex = 0; storeIndex < cookieStores.length; storeIndex++) {
+      let cookieStore = cookieStores[storeIndex];
+      let cookieCount = cookieStore[hourIndex];
+      cookiesForThisHour += cookieCount;
+      console.log({ storeIndex, cookieCount, cookiesForThisHour})
+    }
+
+    resultArray.push(cookiesForThisHour);
+    console.log(resultArray);
+  }
+
+  return resultArray;
+  */
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -37,8 +65,16 @@ Here is sample data for the 9:00 sales: { sales: '88 cookies', time: '9 a.m.' }.
 Write a function named salesData that uses forEach to iterate over the hourlySales array and create an object for each hour. Return an array of the formatted data.
 ------------------------------------------------------------------------------------------------ */
 
+//i:0, 1, 2
+// [9,10,11]
+// [1, 5,17]
 const salesData = (hours, data) => {
-  // Solution code here...
+  return data.map((hourlySaleCount, hourIndex) => {
+    return ({
+      sales: `${hourlySaleCount} cookies`,
+      time: hours[hourIndex],
+    });
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -135,7 +171,30 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
+  function sum(array) {
+    return array.reduce((sum, next) => sum + next, 0);
+  }
+
+  function weeklyAverage(week) {
+    return sum(week) / week.length;
+  }
+
+
+  // return Math.min(...weather.map(weeklyAverage));
+
+  // return weather
+  //   .map(weeklyAverage)
+  //   .reduce((min, next) => next < min ? next : min);
+
+  let weeklyAverages = weather.map(weeklyAverage);
+
+  let min = Infinity;
+  weeklyAverages.forEach(weeklyAverage => {
+    if (weeklyAverage < min) {
+      min = weeklyAverage;
+    }
+  });
+  return min;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -151,7 +210,17 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+  function sum(array) {
+    return array.reduce((sum, next) => sum + next, 0);
+  }
+
+  let rows = str.split('\n');
+
+  return rows.map(row => {
+    let cols = row.split(',');
+    let colsAsNumbers = cols.map(colString => parseInt(colString));
+    return sum(colsAsNumbers);
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
