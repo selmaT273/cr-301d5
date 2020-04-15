@@ -37,7 +37,14 @@ app.get('/tasks/:task_id', getOneTask);
 app.get('/add', showAddTaskForm);
 app.post('/add', addTask);
 
+app.get('/books', require('./modules/books'));
+
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
+
+// Error Handler Middleware
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
 
 client.connect()
   .then(() => {
@@ -126,5 +133,5 @@ function handleError(err, response) {
   let viewModel = {
     error: err,
   };
-  response.render('pages/error-view', viewModel);
+  response.status(500).render('pages/error-view', viewModel);
 }
