@@ -5,6 +5,7 @@ require('dotenv').config();
 
 // Application Dependencies
 const express = require('express');
+const methodOverride = require('method-override');
 const pg = require('pg');
 
 // Database Setup
@@ -23,6 +24,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // JSON body parser
 
+app.use(methodOverride('_method'));
+
 // Specify a directory for static resources
 app.use(express.static('./public'));
 
@@ -36,8 +39,16 @@ app.get('/', getTasks);
 app.get('/tasks/:task_id', getOneTask);
 app.get('/add', showAddTaskForm);
 app.post('/add', addTask);
+app.delete('/tasks/:task_id', deleteOneTask);
+
+app.get('/books', require('./modules/books'));
 
 app.get('*', (req, res) => res.status(404).send('This route does not exist'));
+
+// Error Handler Middleware
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
 
 client.connect()
   .then(() => {
@@ -122,9 +133,22 @@ function addTask(request, response) {
     .catch(err => handleError(err, response))
 }
 
+function deleteOneTask(request, response) {
+  console.log('DELETE', request.params.task_id)
+  const SQL = `
+    DELETE FROM Tasks
+    WHERE Id = $1
+  `
+  client.query(SQL, [request.params.task_id])
+    .then(() => {
+      response.redirect('/');
+    })
+    .catch(err => handleError(err, response));
+}
+
 function handleError(err, response) {
   let viewModel = {
     error: err,
   };
-  response.render('pages/error-view', viewModel);
+  response.status(500).render('pages/error-view', viewModel);
 }

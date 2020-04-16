@@ -15,6 +15,11 @@
             <p>Completion status: <%= task.status %></p>
             <p>Category: <%= task.category %></p>
             <p>Complete this task by <%= task.due %></p>
+
+            <!-- method override -->
+            <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST">
+              <button>DELETE</button>
+            </form>
           </li>
         </ul>
       </section>
